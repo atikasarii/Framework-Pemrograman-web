@@ -11,7 +11,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('category')->latest()->get();
+        $products = Product::with('category')->latest()->paginate(10);
 
         return view('master-data.product.index', compact('products'));
     }
