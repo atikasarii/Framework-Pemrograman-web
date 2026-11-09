@@ -52,3 +52,8 @@ Route::middleware(['auth', 'role:admin,kasir'])->group(function () {
 Route::get('/test-badge', function () {
     return view('test-badge');
 })->middleware('auth');
+Route::middleware(['auth', 'role:admin,kasir'])->group(function () {
+    Route::get('/pos', [\App\Http\Controllers\PosController::class, 'index'])->name('pos.index');
+    Route::post('/pos', [\App\Http\Controllers\PosController::class, 'store'])->name('pos.store');
+    Route::get('/pos/{transaction}/struk', [\App\Http\Controllers\PosController::class, 'struk'])->name('pos.struk');
+});
